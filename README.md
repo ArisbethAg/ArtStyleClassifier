@@ -1,1 +1,1 @@
-# ArtistClassifier
+# Art Style Classifier
