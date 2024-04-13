@@ -16,9 +16,8 @@
 
 **Tamaño del dataset:**
 
-**Pinturas impresionistas:** 1595 (50.8%)
-
-**Pinturas de otras corrientes artísticas (no-impresionistas):** 1545 (49.2%)
+- **Pinturas impresionistas:** 1595 (50.8%)
+- **Pinturas de otras corrientes artísticas (no-impresionistas):** 1545 (49.2%)
 
 **Distribución del dataset:**
 La distribución del dataset fue hecha de forma aleatoria usando el script anexo randomized_images.py
