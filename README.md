@@ -15,7 +15,9 @@
 **Información Relevante:** La estructura inicial del dataset fue modificada, dividiendo a todos los trabajos de los artistas impresionistas de los de otras corrientes, para así poder identificar dicho estilo artístico de forma más fácil.
 
 **Tamaño del dataset:**
+
 **Pinturas impresionistas:** 1595 (50.8%)
+
 **Pinturas de otras corrientes artísticas (no-impresionistas):** 1545 (49.2%)
 
 **Distribución del dataset:**
