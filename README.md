@@ -34,6 +34,6 @@ La distribución del dataset fue hecha de forma aleatoria usando el script anexo
 
 [Link del dataset actualizado (Google Drive)](https://drive.google.com/drive/folders/13U8wAopsLEXEF5I0QQ_WmhCwxb_A8Uqy?usp=sharing)
 
-## Documentación del Dataset
+## Preprocesamiento de los datos
 
 Se aplicó un redimensionamiento de 150x150 píxeles y se normalizaron las imágenes para que sus píxeles solamente tengan valores de 0 a 1.
