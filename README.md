@@ -10,7 +10,7 @@
 
 **Fuente del Dataset:** El dataset original fue obtenido de Kaggle, [Best Artworks of All Time](https://www.kaggle.com/datasets/ikarus777/best-artworks-of-all-time/data). Sin embargo, este fue modificado por mí el 13 de abril del 2024.
 
-**Autores:** [Icaro](https://www.kaggle.com/ikarus777), [artchallenge.ru](https://artchallenge.ru/?lang=en), Arisbeth Aguirre Pontaza
+**Autores:** [Icaro](https://www.kaggle.com/ikarus777), [artchallenge.ru](https://artchallenge.ru/?lang=en)
 
 **Información Relevante:** La estructura inicial del dataset fue modificada, dividiendo a todos los trabajos de los artistas impresionistas de los de otras corrientes, para así poder identificar dicho estilo artístico de forma más fácil.
 
