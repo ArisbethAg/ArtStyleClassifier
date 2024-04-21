@@ -15,8 +15,8 @@ def separar_imagenes_aleatorias(ruta_origen, ruta_destino, numero_imagenes):
 
         shutil.move(ruta_imagen_origen, ruta_imagen_destino)
 
-ruta_origen = '/Users/arisbethaguirre/Downloads/PaintingsDataset/NonImpressionism'
-ruta_destino = '/Users/arisbethaguirre/Downloads/PaintingsDataset/train/NonImpressionism'
-numero_imagenes = 1081  # Número de imágenes aleatorias que quieres seleccionar y mover
+ruta_origen = '/Users/arisbethaguirre/Downloads/PaintingsDataset/train/NonImpressionism'
+ruta_destino = '/Users/arisbethaguirre/Downloads/PaintingsDataset/validation/NonImpressionism'
+numero_imagenes = 108  # Número de imágenes aleatorias que quieres seleccionar y mover
 
 separar_imagenes_aleatorias(ruta_origen, ruta_destino, numero_imagenes)
