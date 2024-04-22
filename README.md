@@ -44,7 +44,7 @@ También, a partir del set de train, se generaron nuevas imágenes. De forma má
 
 ## Validación de los datos
 
-Se creó una carpeta de validación, en donde el 15% de los datos de train fueron almacenados. Para este set de imágenes también se aplicó un preprocesamiento a las imágenes para redimensionarlas y normalizarlas.
+Se creó una carpeta de validación, en donde el 15% de los datos del set de train fueron almacenados. Para este set de imágenes también se aplicó un preprocesamiento a las imágenes para redimensionarlas y normalizarlas.
 
 ## Implementación del modelo
 
@@ -95,7 +95,7 @@ Con lo que se puede observar que el modelo tiene un muy buen recall pero que, en
 
 ```
           label neg   label pos
-pred neg     6          0
+pred neg     6            0
 pred pos     12           14
 
 ```
