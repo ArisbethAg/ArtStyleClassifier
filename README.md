@@ -39,3 +39,65 @@ La distribución del dataset fue hecha de forma aleatoria usando el script anexo
 ## Preprocesamiento de los datos
 
 Se aplicó un redimensionamiento de 150x150 píxeles y se normalizaron las imágenes para que sus píxeles solamente tengan valores de 0 a 1.
+
+También, a partir del set de train, se generaron nuevas imágenes. De forma más específica, un batch de 32 por cada época y con un rango de rotación de 20, un rango de brillo entre 0.8 - 1, y con posibilidad de cambiar su orientación vertical y horizontal.
+
+## Validación de los datos
+
+Se creó una carpeta de validación, en donde el 15% de los datos de train fueron almacenados. Para este set de imágenes también se aplicó un preprocesamiento a las imágenes para redimensionarlas y normalizarlas.
+
+## Implementación del modelo
+
+Para la implementación del modelo revise los siguientes papers:
+
+[Artistic Style Recognition: Combining Deep and Shallow Neural Networks for Painting Classification](https://www.mdpi.com/2227-7390/11/22/4564)
+
+[Evaluation of CNN Models with Transfer Learning in Art Media Classification in Terms of Accuracy and Class Relationship](https://www.polibits.cidetec.ipn.mx/ojs/index.php/CyS/article/view/4895/3668)
+
+[Attention-based VGG-16 model for COVID-19 chest X-ray image classification](https://link.springer.com/article/10.1007/s10489-020-02055-x)
+
+Y con lo revisado implementé un modelo de transfer learning, tomando como modelo base una red neuronal VGG-16, pre-entrenada con ImageNet, sin incluir su última capa. A este modelo posteriormente le agregué una capa densa de 64 neuronas con activación ReLu, una capa de Dropout del 30% y por último una capa densa de 1 neurona con activación sigmoid para hacer la clasificación entre pinturas impresionistas y no impresionistas.
+
+Este modelo, posteriormente fue entrenado a lo largo de 10 épocas, obteniendo como resultado las siguientes métricas:
+
+- **loss:** 0.4573
+- **accuracy:** 0.7816
+- **validation loss:** 0.4764
+- **validation accuracy:** 0.7626
+
+## Testing del modelo
+
+En esta parte, usando el dataset de test, se evalúo el modelo con 25 steps y se obtuvo el siguiente resultado:
+
+- **accuracy:** 0.6162
+
+## Evaluación del modelo
+
+Para evaluar el modelo, tome como referencia el siguiente paper:
+
+[Artistic Style Recognition: Combining Deep and Shallow Neural Networks for Painting Classification](https://www.mdpi.com/2227-7390/11/22/4564)
+
+En él, se mencionan las métricas de precision, recall y f1 score, e investigando más fondo estás se pueden definir de la siguiente manera:
+
+- **Precision:** Una métrica para observar cuantas de las predicciones positivas son correctas. Se centra en la calidad de las predicciones positivas del modelo.
+
+- **Recall:** También llamada Sensitivity, es una métrica para observar cuantos de los casos positivos el modelo clasificó correctamente.
+
+- **F1 score:** Es una métrica que evalúa la eficiencia general del modelo combinando la precision y el recall. En otras palabras es el promedio armónico de la precision y el recall para medir la capacidad del modelo para ser preciso y completo al mismoo tiempo.
+
+Tomando esto en cuenta, realicé la evaluación del modelo, obteniendo los siguientes resultados:
+
+- **Precision:** 0.5384615384615384
+- **Recall:** 1.0
+- **F1 score:** 0.7000000000000001
+
+Con lo que se puede observar que el modelo tiene un muy buen recall pero que, en contraste, no tiene muy buena precisión y observando la matriz de confusión:
+
+```
+          label neg   label pos
+pred neg     6          0
+pred pos     12           14
+
+```
+
+Podemos ver que de las positivas todas las identificó correctamente, sin embargo de las negativas, clasficó la mayoría como positivas, con lo que podemos concluir en que el modelo se encuentra con overfitting.
