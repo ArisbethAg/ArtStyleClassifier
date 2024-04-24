@@ -87,16 +87,16 @@ En él, se mencionan las métricas de precision, recall y f1 score, e investigan
 
 Tomando esto en cuenta, realicé la evaluación del modelo, obteniendo los siguientes resultados:
 
-- **Precision:** 0.5384615384615384
-- **Recall:** 1.0
-- **F1 score:** 0.7000000000000001
+- **Precision:** 0.4864516129032258
+- **Recall:** 0.8125
+- **F1 score:** 0.6085552865213883
 
 Con lo que se puede observar que el modelo tiene un muy buen recall pero que, en contraste, no tiene muy buena precisión y observando la matriz de confusión:
 
 ```
-          label neg   label pos
-pred neg     6            0
-pred pos     12           14
+          label pos   label neg
+pred pos     81           377
+pred neg     398          87
 
 ```
 
