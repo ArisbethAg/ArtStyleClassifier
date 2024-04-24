@@ -58,3 +58,16 @@ disp = ConfusionMatrixDisplay(confusion_matrix=conf_matrix, display_labels=my_la
 disp.plot(cmap=plt.cm.Blues)
 plt.title('Matriz de Confusión')
 plt.show()
+
+from sklearn.metrics import f1_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import precision_score
+
+
+precision = precision_score(true_classes, prediction_classes)
+recall = recall_score(true_classes, prediction_classes)
+f1score = f1_score(true_classes, prediction_classes)
+
+print("f1 score: ", f1score)
+print("recall: ", recall)
+print("precision: ", precision)
