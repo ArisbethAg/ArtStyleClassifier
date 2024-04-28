@@ -60,16 +60,19 @@ Y con lo revisado implementé un modelo de transfer learning, tomando como model
 
 Este modelo, posteriormente fue entrenado a lo largo de 10 épocas, obteniendo como resultado las siguientes métricas:
 
-- **loss:** 0.4573
-- **accuracy:** 0.7816
-- **validation loss:** 0.4764
+- **loss:** 0.4777
+- **accuracy:** 0.7557
+- **validation loss:** 0.4912
 - **validation accuracy:** 0.7626
+
+<img src="images/acc_v1.png" width="200">
+<img src="images/loss_v1.png" width="200">
 
 ## Testing del modelo
 
 En esta parte, usando el dataset de test, se evalúo el modelo con 25 steps y se obtuvo el siguiente resultado:
 
-- **accuracy:** 0.6162
+- **test accuracy:** 0.5885
 
 ## Evaluación del modelo
 
@@ -87,17 +90,58 @@ En él, se mencionan las métricas de precision, recall y f1 score, e investigan
 
 Tomando esto en cuenta, realicé la evaluación del modelo, obteniendo los siguientes resultados:
 
-- **Precision:** 0.4864516129032258
-- **Recall:** 0.8125
-- **F1 score:** 0.6085552865213883
+- **Precision:** 0.4938
+- **Recall:** 0.8642
+- **F1 score:** 0.6285
 
-Con lo que se puede observar que el modelo tiene un muy buen recall pero que, en contraste, no tiene muy buena precisión y observando la matriz de confusión:
+Con lo que se puede observar que el modelo tiene un buen recall pero que, en contraste, no tiene muy buena precisión y observando la matriz de confusión de test:
 
-```
-          label pos   label neg
-pred pos     81           377
-pred neg     398          87
+<img src="images/conf_mat_test_v1.png" width="200">
 
-```
+Podemos ver que el modelo prácticamete clasificó a todas las pinturas como no imprresionistas.
 
-Podemos ver que de las positivas todas las identificó correctamente, sin embargo de las negativas, clasficó la mayoría como positivas, con lo que podemos concluir en que el modelo se encuentra con overfitting.
+Y observando la matriz de confusión en train:
+
+<img src="images/conf_mat_train_v1.png" width="200">
+
+Se puede observar que el modelo predice todas como impresionistas, esto junto con su accuracy, la cuál está muy alta, nos dice que el modelo se encuentra con overfitting, está memorizando las imágenes y posteriormente todas las clasifica de forma contraria.
+
+## Refinamiento del modelo
+
+Tras los resultados mostrados previamente y haberse notado el overfitting del modelo, se tomó en cuenta las siguiente consideración para el refinamiento del modelo:
+
+- **Uso de regularizadores:** Para evitar que la red se ajuste tanto a la distribución del dataset.
+
+Tras algunas corridas del modelo, al agregar regularizadores pude percatarme de que el test accuracy mejoraba, y, al agregar un valor de 0.012 de l2 regularizers, fue el momento en el que ví que el test accuracy de mi modelo mejoró considerablamente, de 58% a 66.1%, razón por la cuál decidí mejorar al modelo con este parámetro.
+
+A continuación muestro las métricas correspondiente al modelo elegido:
+
+En train
+
+- **loss:** 0.5758
+- **accuracy:** 0.7322
+- **validation loss:** 0.5697
+- **validation accuracy:** 0.7489
+
+<img src="images/acc_v2.png" width="200">
+<img src="images/loss_v2.png" width="200">
+
+En test:
+
+- **test accuracy:** 0.6617
+
+Métricas:
+
+- **Precision:** 0.4938
+- **Recall:** 0.7413
+- **F1 score:** 0.5936
+
+Matriz de Confusión en Test:
+
+<img src="images/conf_mat_test_v2.png" width="200">
+
+Matriz de Confusión en Train:
+
+<img src="images/conf_mat_train_v2.png" width="200">
+
+Con ello podemos observar como la memorización del modelo bajo y así, mejoró el test accuracy del modelo.
