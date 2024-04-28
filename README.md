@@ -25,13 +25,13 @@ La distribución del dataset fue hecha de forma aleatoria usando el script anexo
 **Pinturas impresionistas:**
 
 - **Train:** 1116 (70%)
-  - **Validation:** 111 (15%)
+  - **Validation:** 111 (10%)
 - **Test:** 479 (30%)
 
 **Pinturas no-impresionistas:**
 
 - **Train:** 1081 (70%)
-  - **Validation:** 108 (15%)
+  - **Validation:** 108 (10%)
 - **Test:** 464 (30%)
 
 [Link del dataset actualizado (Google Drive)](https://drive.google.com/drive/folders/13U8wAopsLEXEF5I0QQ_WmhCwxb_A8Uqy?usp=sharing)
