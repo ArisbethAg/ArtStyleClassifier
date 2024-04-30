@@ -52,11 +52,9 @@ Para la implementación del modelo revise los siguientes papers:
 
 [Artistic Style Recognition: Combining Deep and Shallow Neural Networks for Painting Classification](https://www.mdpi.com/2227-7390/11/22/4564)
 
-[Evaluation of CNN Models with Transfer Learning in Art Media Classification in Terms of Accuracy and Class Relationship](https://www.polibits.cidetec.ipn.mx/ojs/index.php/CyS/article/view/4895/3668)
-
 [Attention-based VGG-16 model for COVID-19 chest X-ray image classification](https://link.springer.com/article/10.1007/s10489-020-02055-x)
 
-Y con lo revisado implementé un modelo de transfer learning, tomando como modelo base una red neuronal VGG-16, pre-entrenada con ImageNet, sin incluir su última capa. A este modelo posteriormente le agregué una capa densa de 64 neuronas con activación ReLu, una capa de Dropout del 30% y por último una capa densa de 1 neurona con activación sigmoid para hacer la clasificación entre pinturas impresionistas y no impresionistas.
+Y con lo revisado implementé un modelo de transfer learning, tomando como modelo base una red neuronal VGG-16, pre-entrenada con ImageNet, sin incluir su última capa. A este modelo posteriormente le agregué una capa densa de 64 neuronas con activación ReLu, una capa de Dropout del 30% y por último una capa densa de 1 neurona con activación sigmoid para hacer la clasificación entre pinturas impresionistas y no impresionistas [1][2].
 
 Este modelo, posteriormente fue entrenado a lo largo de 10 épocas, obteniendo como resultado las siguientes métricas:
 
@@ -65,8 +63,8 @@ Este modelo, posteriormente fue entrenado a lo largo de 10 épocas, obteniendo c
 - **validation loss:** 0.4912
 - **validation accuracy:** 0.7626
 
-<img src="images/acc_v1.png" width="200">
-<img src="images/loss_v1.png" width="200">
+<img src="images/acc_v1.png" width="400">
+<img src="images/loss_v1.png" width="400">
 
 ## Testing del modelo
 
@@ -76,11 +74,7 @@ En esta parte, usando el dataset de test, se evalúo el modelo con 25 steps y se
 
 ## Evaluación del modelo
 
-Para evaluar el modelo, tome como referencia el siguiente paper:
-
-[Artistic Style Recognition: Combining Deep and Shallow Neural Networks for Painting Classification](https://www.mdpi.com/2227-7390/11/22/4564)
-
-En él, se mencionan las métricas de precision, recall y f1 score, e investigando más fondo estás se pueden definir de la siguiente manera:
+Para evaluar el modelo, tome como referencia uno de los papers mencionados anteriormente, en el que se habla de las métricas de precision, recall y f1 score [1]. Investigando más fondo estás se pueden definir de la siguiente manera:
 
 - **Precision:** Una métrica para observar cuantas de las predicciones positivas son correctas. Se centra en la calidad de las predicciones positivas del modelo.
 
@@ -96,13 +90,13 @@ Tomando esto en cuenta, realicé la evaluación del modelo, obteniendo los sigui
 
 Con lo que se puede observar que el modelo tiene un buen recall pero que, en contraste, no tiene muy buena precisión y observando la matriz de confusión de test:
 
-<img src="images/conf_mat_test_v1.png" width="200">
+<img src="images/conf_mat_test_v1.png" width="400">
 
 Podemos ver que el modelo prácticamete clasificó a todas las pinturas como no imprresionistas.
 
 Y observando la matriz de confusión en train:
 
-<img src="images/conf_mat_train_v1.png" width="200">
+<img src="images/conf_mat_train_v1.png" width="400">
 
 Se puede observar que el modelo predice todas como impresionistas, esto junto con su accuracy, la cuál está muy alta, nos dice que el modelo se encuentra con overfitting, está memorizando las imágenes y posteriormente todas las clasifica de forma contraria.
 
@@ -123,8 +117,8 @@ En train
 - **validation loss:** 0.5697
 - **validation accuracy:** 0.7489
 
-<img src="images/acc_v2.png" width="200">
-<img src="images/loss_v2.png" width="200">
+<img src="images/acc_v2.png" width="407">
+<img src="images/loss_v2.png" width="400">
 
 En test:
 
@@ -138,10 +132,32 @@ Métricas:
 
 Matriz de Confusión en Test:
 
-<img src="images/conf_mat_test_v2.png" width="200">
+<img src="images/conf_mat_test_v2.png" width="400">
 
 Matriz de Confusión en Train:
 
-<img src="images/conf_mat_train_v2.png" width="200">
+<img src="images/conf_mat_train_v2.png" width="400">
 
-Con ello podemos observar como la memorización del modelo bajo y así, mejoró el test accuracy del modelo.
+Con ello podemos observar como la memorización del modelo bajó y así, mejoró el test accuracy del modelo.
+
+## Conclusión
+
+|                | Versión inicial | Versión refinada |
+| -------------- | --------------- | ---------------- |
+| Train accuracy | 0.7557          | 0.7322           |
+| Train Loss     | 0.4777          | 0.5758           |
+| Test accuracy  | 0.5885          | 0.6617           |
+| Precision      | 0.4938          | 0.4938           |
+| Recall         | 0.8642          | 0.7413           |
+| f1-score       | 0.6285          | 0.5936           |
+
+Cómo se puede observar en la tabla, aunque la primera versión tiene mejor accuracy y loss en training, sus resultados en test muestran que el modelo se encuentra con overfitting y se inclina mucho hacia el Impresionismo. Sin embargo, en la versión refinada del mismo podemos observar que, aunque también se encuentra con overfitting, debido a la inclusión de regularizadores, ya no memoriza de forma tan detallada el dataset, lo que hace que pueda tener un mejor deseempeño en training. Por esta razón, como la versión refinada ya no se encuentra con tanto sesgo hacia una clase, el modelo se desempeña mejor que la versión inicial (un 8% mejor para ser exactos).
+
+## Referencias
+
+[1]
+S. Imran et al., “Artistic Style Recognition: Combining Deep and Shallow Neural Networks for Painting Classification,” Mathematics, vol. 11, no. 22, pp. 4564–4564, Nov. 2023, doi: https://doi.org/10.3390/math11224564
+‌
+
+[2]
+C. Sitaula and M. B. Hossain, “Attention-based VGG-16 model for COVID-19 chest X-ray image classification,” Applied Intelligence, Nov. 2020, doi: https://doi.org/10.1007/s10489-020-02055-x.
